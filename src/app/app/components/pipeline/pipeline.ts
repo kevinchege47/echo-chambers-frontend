@@ -6,6 +6,7 @@ import {DecimalPipe, SlicePipe} from '@angular/common';
 import {AgentCardComponent} from '../agent-card/agent-card';
 import {MisinformationService} from '../../services/misinformation';
 import {AIProvider, AppState, PipelineResponse} from '../../models/models';
+import {RouterLink} from '@angular/router';
 
 
 const FALLBACK_PROVIDERS: AIProvider[] = [
@@ -35,7 +36,7 @@ const EXAMPLES = [
 @Component({
   selector: 'app-pipeline',
   standalone: true,
-  imports: [FormsModule, DecimalPipe, AgentCardComponent, SlicePipe],
+  imports: [FormsModule, DecimalPipe, AgentCardComponent, SlicePipe, RouterLink],
   templateUrl:'pipeline.html'
 })
 export class PipelineComponent {
