@@ -1,100 +1,134 @@
 <div class="min-h-screen font-sans" style="background: #0f1117; color: #eef0f5;">
 
   <!-- ── HEADER ── -->
-  <header style="border-bottom: 1px solid #1a1d24; background: #0f1117ee; backdrop-filter: blur(12px);"
-          class="sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-base"
-             style="background: #ef4444; font-size: 16px;">🧬</div>
-        <div>
-          <span class="font-bold text-white text-sm tracking-tight">MisInfo Pipeline</span>
-          <span class="text-[11px] ml-2.5 hidden sm:inline" style="color: #6b7a94;">
-              watch the truth decay
-            </span>
-        </div>
-      </div>
-      @if (appState() === 'results') {
-        <button (click)="reset()"
-                class="text-xs px-3 py-1.5 rounded-lg transition-all duration-150 font-mono"
-                style="color: #8b95a8; border: 1px solid #2e3347;"
-                onmouseenter="this.style.color='#e5e7eb'; this.style.borderColor='#374151';"
-                onmouseleave="this.style.color='#6b7280'; this.style.borderColor='#2e3347';">
-          ← reset
-        </button>
-      }
-    </div>
-  </header>
+  <header
+    class="sticky top-0 z-50 bg-[#0f1117ee] shadow-none shadow-black/20 backdrop-blur-xl">
 
+    <div class="mx-auto max-w-7xl px-4 py-3">
+
+      <div
+        class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 shadow-lg backdrop-blur-2xl">
+
+        <!-- Branding -->
+        <a
+          class="flex flex-col"
+          href="/">
+
+          <p class="text-xl font-black tracking-tight text-white">
+            ECHO
+            <span class="text-red-400">
+            CHAMBERS
+          </span>
+          </p>
+
+          <p class="text-xs text-neutral-400">
+            watch narratives evolve
+          </p>
+
+        </a>
+
+        <!-- Navigation -->
+        <nav
+          class="hidden lg:flex items-center gap-7 text-sm font-semibold text-neutral-300">
+
+          <a
+            routerLink="/why"
+            class="transition hover:text-red-400">
+
+            Why ?
+
+          </a>
+
+        </nav>
+
+        <!-- Reset -->
+        @if (appState() === 'results') {
+
+          <button
+            (click)="reset()"
+            class="rounded-lg border border-neutral-700 px-4 py-2 text-sm font-medium text-neutral-400 transition hover:border-neutral-500 hover:text-white">
+
+            Reset
+
+          </button>
+
+        }
+
+      </div>
+
+    </div>
+
+  </header>
   <!-- ── IDLE / ERROR ── -->
   @if (appState() === 'idle' || appState() === 'error') {
     <main class="max-w-6xl mx-auto px-5 py-10 space-y-4">
 
       <!-- AI Settings -->
-<!--      <section class="rounded-2xl p-6 space-y-4" style="background: #1a1d27; border: 1px solid #2e3347;">-->
-<!--        <div class="flex items-center gap-2.5 mb-5">-->
-<!--          <div class="w-6 h-6 rounded-md flex items-center justify-center text-sm"-->
-<!--               style="background: #272b38;">⚙️</div>-->
-<!--          <h2 class="text-xs font-semibold uppercase tracking-widest" style="color: #8b95a8;">-->
-<!--            AI Provider-->
-<!--          </h2>-->
-<!--        </div>-->
+      <!--      <section class="rounded-2xl p-6 space-y-4" style="background: #1a1d27; border: 1px solid #2e3347;">-->
+      <!--        <div class="flex items-center gap-2.5 mb-5">-->
+      <!--          <div class="w-6 h-6 rounded-md flex items-center justify-center text-sm"-->
+      <!--               style="background: #272b38;">⚙️</div>-->
+      <!--          <h2 class="text-xs font-semibold uppercase tracking-widest" style="color: #8b95a8;">-->
+      <!--            AI Provider-->
+      <!--          </h2>-->
+      <!--        </div>-->
 
-<!--        <div class="grid grid-cols-2 gap-3">-->
-<!--          <div class="space-y-2">-->
-<!--            <label class="text-[11px] font-mono uppercase tracking-widest block" style="color: #6b7a94;">-->
-<!--              Provider-->
-<!--            </label>-->
-<!--            <select [(ngModel)]="selectedProvider" (ngModelChange)="onProviderChange()"-->
-<!--                    class="w-full rounded-xl px-3 py-2.5 text-sm outline-none font-sans cursor-pointer transition-colors"-->
-<!--                    style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;">-->
-<!--              @for (p of providers(); track p.id) {-->
-<!--                <option [value]="p.id">{{ p.name }}</option>-->
-<!--              }-->
-<!--            </select>-->
-<!--          </div>-->
+      <!--        <div class="grid grid-cols-2 gap-3">-->
+      <!--          <div class="space-y-2">-->
+      <!--            <label class="text-[11px] font-mono uppercase tracking-widest block" style="color: #6b7a94;">-->
+      <!--              Provider-->
+      <!--            </label>-->
+      <!--            <select [(ngModel)]="selectedProvider" (ngModelChange)="onProviderChange()"-->
+      <!--                    class="w-full rounded-xl px-3 py-2.5 text-sm outline-none font-sans cursor-pointer transition-colors"-->
+      <!--                    style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;">-->
+      <!--              @for (p of providers(); track p.id) {-->
+      <!--                <option [value]="p.id">{{ p.name }}</option>-->
+      <!--              }-->
+      <!--            </select>-->
+      <!--          </div>-->
 
-<!--          <div class="space-y-2">-->
-<!--            <label class="text-[11px] font-mono uppercase tracking-widest block" style="color: #6b7a94;">-->
-<!--              Model-->
-<!--            </label>-->
-<!--            <select [(ngModel)]="selectedModel"-->
-<!--                    class="w-full rounded-xl px-3 py-2.5 text-sm outline-none font-sans cursor-pointer transition-colors"-->
-<!--                    style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;">-->
-<!--              @for (m of currentModels(); track m) {-->
-<!--                <option [value]="m">{{ m }}</option>-->
-<!--              }-->
-<!--            </select>-->
-<!--          </div>-->
-<!--        </div>-->
+      <!--          <div class="space-y-2">-->
+      <!--            <label class="text-[11px] font-mono uppercase tracking-widest block" style="color: #6b7a94;">-->
+      <!--              Model-->
+      <!--            </label>-->
+      <!--            <select [(ngModel)]="selectedModel"-->
+      <!--                    class="w-full rounded-xl px-3 py-2.5 text-sm outline-none font-sans cursor-pointer transition-colors"-->
+      <!--                    style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;">-->
+      <!--              @for (m of currentModels(); track m) {-->
+      <!--                <option [value]="m">{{ m }}</option>-->
+      <!--              }-->
+      <!--            </select>-->
+      <!--          </div>-->
+      <!--        </div>-->
 
-<!--        <div class="space-y-2">-->
-<!--          <div class="flex items-center justify-between">-->
-<!--            <label class="text-[11px] font-mono uppercase tracking-widest" style="color: #6b7a94;">-->
-<!--              API Key-->
-<!--            </label>-->
-<!--            <a [href]="currentProviderUrl()" target="_blank"-->
-<!--               class="text-[11px] font-mono transition-colors"-->
-<!--               style="color: #3b82f6;"-->
-<!--               onmouseenter="this.style.color='#60a5fa';"-->
-<!--               onmouseleave="this.style.color='#3b82f6';">-->
-<!--              get free key →-->
-<!--            </a>-->
-<!--          </div>-->
-<!--          <input type="password" [(ngModel)]="apiKey"-->
-<!--                 placeholder="paste your api key here…"-->
-<!--                 class="w-full rounded-xl px-3 py-2.5 text-sm font-mono outline-none transition-colors"-->
-<!--                 style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;"-->
-<!--                 onfocus="this.style.borderColor='#374151';"-->
-<!--                 onblur="this.style.borderColor='#2e3347';" />-->
-<!--        </div>-->
-<!--      </section>-->
+      <!--        <div class="space-y-2">-->
+      <!--          <div class="flex items-center justify-between">-->
+      <!--            <label class="text-[11px] font-mono uppercase tracking-widest" style="color: #6b7a94;">-->
+      <!--              API Key-->
+      <!--            </label>-->
+      <!--            <a [href]="currentProviderUrl()" target="_blank"-->
+      <!--               class="text-[11px] font-mono transition-colors"-->
+      <!--               style="color: #3b82f6;"-->
+      <!--               onmouseenter="this.style.color='#60a5fa';"-->
+      <!--               onmouseleave="this.style.color='#3b82f6';">-->
+      <!--              get free key →-->
+      <!--            </a>-->
+      <!--          </div>-->
+      <!--          <input type="password" [(ngModel)]="apiKey"-->
+      <!--                 placeholder="paste your api key here…"-->
+      <!--                 class="w-full rounded-xl px-3 py-2.5 text-sm font-mono outline-none transition-colors"-->
+      <!--                 style="background: #13161f; border: 1px solid #2e3347; color: #eef0f5;"-->
+      <!--                 onfocus="this.style.borderColor='#374151';"-->
+      <!--                 onblur="this.style.borderColor='#2e3347';" />-->
+      <!--        </div>-->
+      <!--      </section>-->
 
       <!-- Fact Input -->
       <section class="rounded-2xl p-6" style="background: #1a1d27; border: 1px solid #2e3347;">
         <div class="flex items-center gap-2.5 mb-1">
           <div class="w-6 h-6 rounded-md flex items-center justify-center text-sm"
-               style="background: #272b38;">📌</div>
+               style="background: #272b38;">📌
+          </div>
           <h2 class="text-xs font-semibold uppercase tracking-widest" style="color: #8b95a8;">
             The Fact
           </h2>
@@ -198,7 +232,8 @@
       <div class="rounded-2xl p-5" style="background: #191228; border: 1px solid #3d2568;">
         <div class="flex items-start gap-3">
           <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-base"
-               style="background: #241848;">🧠</div>
+               style="background: #241848;">🧠
+          </div>
           <div class="min-w-0">
             <div class="flex items-center gap-2 mb-2 flex-wrap">
                 <span class="text-[10px] font-mono uppercase tracking-widest" style="color: #9d6fff;">
@@ -268,7 +303,7 @@
 
       <!-- Agent cards with connectors -->
       @for (agent of result()!.agents; track agent.agent_id; let i = $index; let last = $last) {
-        <app-agent-card [agent]="agent" [visible]="isVisible(i)" />
+        <app-agent-card [agent]="agent" [visible]="isVisible(i)"/>
         @if (!last) {
           <div class="flex flex-col items-center gap-0.5 py-0.5">
             <div class="w-px h-4" style="background: #272b38;"></div>
