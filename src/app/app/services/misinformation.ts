@@ -12,6 +12,10 @@ export class MisinformationService {
     return this.http.post<PipelineResponse>(`${this.apiUrl}/api/analyze`, request);
   }
 
+
+
+
+
   getProviders(): Observable<{ providers: AIProvider[] }> {
     return this.http.get<{ providers: AIProvider[] }>(`${this.apiUrl}/api/providers`);
   }
